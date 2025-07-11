@@ -12,8 +12,8 @@ type User struct {
 	Age  int    `json:"age"`
 }
 
-func jsonreader() {
-	File, err := os.ReadFile("")
+func main() {
+	File, err := os.ReadFile("test.json")
 	if err != nil {
 		log.Fatal("Ошибка открытия", err)
 	}
@@ -25,7 +25,7 @@ func jsonreader() {
 	adduser := User{Name: "Stepan", Age: 18}
 	users = append(users, adduser)
 	newppl, err := json.MarshalIndent(users, "", "")
-	err = os.WriteFile("users", newppl, 0644)
+	err = os.WriteFile("test.json", newppl, 0644)
 	if err != nil {
 		log.Fatal("Ошибка записывания", err)
 	}
