@@ -10,8 +10,9 @@ import (
 )
 
 type he struct {
-	number        int
-	numbertwotime int
+	number          int
+	numbertwotime   int
+	numberthreetime int
 }
 
 func main() {
@@ -19,8 +20,8 @@ func main() {
 	number := getnumber(reader)
 	result := stepen(generatenumbers(number))
 	for i := range result {
-		fmt.Printf("Число: %d, Квадрат: %d\n",
-			i.number, i.numbertwotime)
+		fmt.Printf("Число: %d, Квадрат: %d, Куб: %d\n",
+			i.number, i.numbertwotime, i.numberthreetime)
 	}
 }
 
@@ -39,8 +40,9 @@ func stepen(numbers <-chan int) <-chan he {
 	go func() {
 		for i := range numbers {
 			out <- he{
-				number:        i,
-				numbertwotime: i * i,
+				number:          i,
+				numbertwotime:   i * i,
+				numberthreetime: i * i * i,
 			}
 
 		}
