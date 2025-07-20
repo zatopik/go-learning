@@ -32,6 +32,10 @@ func main() {
 func generatenumbers(number int, cx context.Context) <-chan int {
 	out := make(chan (int))
 	go func() {
+		if cx.Err() != nil {
+			log.Println("Обработка прервана")
+			return
+		}
 		for i := 1; i <= number; i++ {
 			out <- i
 		}
